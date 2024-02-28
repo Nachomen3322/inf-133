@@ -48,7 +48,7 @@ class RESTRequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps(conteo_carreras).encode('utf-8'))
         #Cantidad total de estudiantes
-        elif self.path == '/cantidad_estudiantes':
+        elif self.path == '/total_estudiantes':
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()

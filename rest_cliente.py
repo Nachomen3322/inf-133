@@ -34,7 +34,7 @@ print(get_responseConteo.text)
 
 #Cantidad total
 print("------------------------------------------------------------------------")
-ruta_getContarEst = url + "cantidad_estudiantes"
+ruta_getContarEst = url + "total_estudiantes"
 get_responseConteoEst = requests.request(method="GET", url=ruta_getContarEst)
 print("Cantidad de estudiantes:", get_responseConteoEst.text)
 
