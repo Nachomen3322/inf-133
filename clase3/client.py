@@ -65,7 +65,7 @@ put_response = requests.request(
 print(put_response.text)
 
 
-# Tarea
+# ---------------Tarea-------------------
 # Muestra todas las carreras
 print("------------------MOSTRAR TODAS LAS CARRERAS-----------------------")
 ruta_getCarreras = url + "carreras"
@@ -81,22 +81,18 @@ print(filtrar_carrera_response.text)
 
 
 # Post para agregar 2 nuevos estudiantes de la carrera de Economía
+print("------------------AGREGAR 2 NUEVOS ESTUDIANTES DE ECONOMIA-----------------------")
 ruta_post = url + "estudiantes"
-nuevo_estudiante1 = {"nombre": "Tyler", "apellido": "Joseph", "carrera": "Bellas Artes"}
-nuevo_estudiante2 = {
-    "nombre": "",
-    "apellido": "Perez",
-    "carrera": "Ingeniería Agronomica",
+nuevo_estudiante1 = {"nombre": "Tyler",
+                    "apellido": "Joseph", 
+                    "carrera": "Economia"}
+nuevo_estudiante2 = {"nombre": "Julian",
+                    "apellido": "Garnacho",
+                    "carrera": "Economia",
 }
 
-post_response = requests.request(method="POST", url=ruta_post, json=nuevo_estudiante)
+post_response = requests.request(method="POST", url=ruta_post, json=nuevo_estudiante1)
+post_response = requests.request(method="POST", url=ruta_post, json=nuevo_estudiante2)
 print(post_response.text)
 
-nuevo_estudiante = {
-    "nombre": "Pedrito",
-    "apellido": "Lopez",
-    "carrera": "Ingenieria",
-}
 
-post_response = requests.request(method="POST", url=ruta_post, json=nuevo_estudiante)
-print(post_response.text)
