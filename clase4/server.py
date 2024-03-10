@@ -7,6 +7,30 @@ estudiantes = [
         "apellido": "García",
         "carrera": "Ingeniería de Sistemas",
     },
+    {
+        "id": 2,
+        "nombre": "Julio",
+        "apellido": "Bohezo",
+        "carrera": "Medicina",
+    },
+    {
+        "id": 3,
+        "nombre": "Cristian",
+        "apellido": "Apaza",
+        "carrera": "Ingeniería de Sistemas",
+    },
+    {
+        "id": 4,
+        "nombre": "Amir",
+        "apellido": "Mollo",
+        "carrera": "Bellas Artes",
+    },
+    {
+        "id": 5,
+        "nombre": "Cristian",
+        "apellido": "Chura",
+        "carrera": "Administracion de empresas",
+    },
 ]
 
 
