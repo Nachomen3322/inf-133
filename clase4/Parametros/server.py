@@ -11,6 +11,18 @@ estudiantes = [
         "apellido": "García",
         "carrera": "Ingeniería de Sistemas",
     },
+    {
+        "id": 2,
+        "nombre": "Juanito",
+        "apellido": "Juarez",
+        "carrera": "Economia",
+    },
+    {
+        "id": 3,
+        "nombre": "Lucas",
+        "apellido": "Sandoval",
+        "carrera": "Economia",
+    },
 ]
 
 
