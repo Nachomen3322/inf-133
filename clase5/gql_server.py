@@ -25,8 +25,10 @@ class Query(ObjectType):
 
 
 estudiantes = [
-    Estudiante(id=1, nombre="Andrea", apellido="Granados", carrera="Bellas Artes"),
-    Estudiante(id=2, nombre="Jose", apellido="Messi", carrera="Ingenieria Civil"),
+    Estudiante(
+        id=1, nombre="Pedrito", apellido="García", carrera="Ingeniería de Sistemas"
+    ),
+    Estudiante(id=2, nombre="Andrea", apellido="Lopez", carrera="Arquitectura"),
 ]
 
 schema = Schema(query=Query)
