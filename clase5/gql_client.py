@@ -32,3 +32,12 @@ query2 = """
 # Hacer otra solicitud POST al servidor GraphQL
 response = requests.post(url, json={"query": query2})
 print(response.text)
+
+query2 = """
+    {
+        estudiante(nombre: Jose, apellido: Lopez){
+            nombre
+            apellido
+        }
+    }
+"""
