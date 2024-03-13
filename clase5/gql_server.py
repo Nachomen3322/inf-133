@@ -60,12 +60,13 @@ class Query(ObjectType):
 
 estudiantes = [
     Estudiante(
-        id=1, nombre="Pedrito", apellido="García", carrera="Ingeniería de Sistemas"
+        id=1, nombre="Pedrito", apellido="Garcia", carrera="Ingeniería de Sistemas"
     ),
     Estudiante(id=2, nombre="Andrea", apellido="Lopez", carrera="Arquitectura"),
 ]
 
-schema = Schema(query=Query)
+
+schema = Schema(query=Query, mutation=Mutations)
 
 
 class GraphQLRequestHandler(BaseHTTPRequestHandler):
