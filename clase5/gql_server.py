@@ -1,6 +1,6 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
-from graphene import ObjectType, String, Int, List, Schema, Field
+from graphene import ObjectType, String, Int, List, Schema, Field, Mutation
 
 
 class Estudiante(ObjectType):
@@ -10,11 +10,37 @@ class Estudiante(ObjectType):
     carrera = String()
 
 
+# CREANDO UN NUEVO ESTUDIANTE
+class CrearEstudiante(Mutation):
+    class Arguments:
+        nombre = String()
+        apellido = String()
+        carrera = String()
+
+    estudiante = Field(Estudiante)
+
+    def mutate(root, info, nombre, apellido, carrera):
+        nuevo_estudiante = Estudiante(
+            id=len(estudiantes) + 1,
+            nombre=nombre,
+            apellido=apellido,
+            carrera=carrera,
+        )
+        estudiantes.append(nuevo_estudiante)
+
+        return CrearEstudiante(estudiante=nuevo_estudiante)
+
+
+class Mutations(ObjectType):
+    crear_estudiante = CrearEstudiante.Field()
+
 
 class Query(ObjectType):
     estudiantes = List(Estudiante)
     estudiante_por_id = Field(Estudiante, id=Int())
-    estudiante_por_nombre_apellido = Field(Estudiante, nombre=String(), apellido=String())
+    estudiante_por_nombre_apellido = Field(
+        Estudiante, nombre=String(), apellido=String()
+    )
 
     def resolve_estudiantes(root, info):
         return estudiantes
@@ -24,6 +50,7 @@ class Query(ObjectType):
             if estudiante.id == id:
                 return estudiante
         return None
+
     def resolve_estudiante_por_nombre_apellido(root, info, nombre, apellido):
         for estudiante in estudiantes:
             if estudiante.nombre == nombre and estudiante.apellido == apellido:
