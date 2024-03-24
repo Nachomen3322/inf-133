@@ -59,27 +59,71 @@ mutation{
 response_mutation = requests.post(url, json={"query": query_crear})
 print(response_mutation.text)
 
-query_crear3 = """
-mutation{
-        crearEstudiante(nombre: "Amir", apellido: "Mollo", carrera: "Arquitectura") {
-            estudiante{
-                id  
-                nombre
-                apellido
-                carrera
-            }
+crearEstudiante1 = """
+mutation {
+    crearEstudiante(nombre: "Juan", apellido: "Pérez", carrera: "Arquitectura") {
+        estudiante {
+            id  
+            nombre
+            apellido
+            carrera
         }
-        crearEstudiante(nombre: "Na", apellido: "Ro", carrera: "Arquitectura") {
-            estudiante{
-                id  
-                nombre
-                apellido
-                carrera
-            }
+    }
+}
+"""
+
+crearEstudiante2 = """
+mutation {
+    crearEstudiante(nombre: "María", apellido: "Gonzalez", carrera: "Arquitectura") {
+        estudiante {
+            id  
+            nombre
+            apellido
+            carrera
         }
-        crearEstudiante(nombre: "Pomni", apellido: "Garzante", carrera: "Arquitectura") {
+    }
+}
+"""
+
+crearEstudiante3 = """
+mutation {
+    crearEstudiante(nombre: "Carlos", apellido: "Martínez", carrera: "Arquitectura") {
+        estudiante {
+            id  
+            nombre
+            apellido
+            carrera
+        }
+    }
+}
+"""
+print("RESPUESTA")
+response_mutation = requests.post(url, json={"query": crearEstudiante1})
+print(response_mutation.text)
+response_mutation = requests.post(url, json={"query": crearEstudiante2})
+print(response_mutation.text)
+response_mutation = requests.post(url, json={"query": crearEstudiante3})
+print(response_mutation.text)
+
+query_arquitectura = """
+{
+    estudiantesPorCarrera(carrera: "Arquitectura") {
+        id
+        nombre
+        apellido
+        carrera
+    }
+}
+"""
+response_arquitectura = requests.post(url, json={"query": query_arquitectura})
+print(response_arquitectura.text)
+
+
+query_eliminar = """
+mutation {
+        deleteEstudiante(id: 3) {
             estudiante{
-                id  
+                id
                 nombre
                 apellido
                 carrera
@@ -87,6 +131,5 @@ mutation{
         }
     }
 """
-print("RESPUESTA")
-response_mutation = requests.post(url, json={"query": query_crear3})
+response_mutation = requests.post(url, json={'query': query_eliminar})
 print(response_mutation.text)

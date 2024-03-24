@@ -31,8 +31,25 @@ class CrearEstudiante(Mutation):
         return CrearEstudiante(estudiante=nuevo_estudiante)
 
 
+# ELIMINAR ESTUDIANTE
+class DeleteEstudiante(Mutation):
+    class Arguments:
+        id = int()
+
+    estudiante = Field(Estudiante)
+
+    def mutate(root, info, id):
+        for i, estudiante in enumerate(estudiantes):
+            if estudiante.id == id:
+                estudiantes.pop(i)
+                return DeleteEstudiante(estudiante=estudiante)
+        return None
+
+
 class Mutations(ObjectType):
     crear_estudiante = CrearEstudiante.Field()
+    # Se crea para eliminar estudiante
+    delete_estudiante = DeleteEstudiante.Field()
 
 
 class Query(ObjectType):
@@ -41,6 +58,7 @@ class Query(ObjectType):
     estudiante_por_nombre_apellido = Field(
         Estudiante, nombre=String(), apellido=String()
     )
+    estudiante_por_carrera = Field(Estudiante, carrera=String())
 
     def resolve_estudiantes(root, info):
         return estudiantes
@@ -56,6 +74,11 @@ class Query(ObjectType):
             if estudiante.nombre == nombre and estudiante.apellido == apellido:
                 return estudiante
             return None
+
+    def resolve_estudiante_por_carrera(root, info, carrera):
+        return [
+            estudiante for estudiante in estudiantes if estudiante.carrera == carrera
+        ]
 
 
 estudiantes = [
