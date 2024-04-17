@@ -179,7 +179,6 @@ for row in cursor:
     print(row)
 
 
-
 ##Nuevo representante # ultimo ejercicio
 
 

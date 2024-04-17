@@ -10,7 +10,19 @@ class Estudiante(ObjectType):
     carrera = String()
 
 
-# CREANDO UN NUEVO ESTUDIANTE
+class Query(ObjectType):
+    estudiantes = List(Estudiante)
+    estudiante_por_id = Field(Estudiante, id=Int())
+
+    def resolve_estudiantes(root, info):
+        return estudiantes
+    
+    def resolve_estudiante_por_id(root, info, id):
+        for estudiante in estudiantes:
+            if estudiante.id == id:
+                return estudiante
+        return None
+
 class CrearEstudiante(Mutation):
     class Arguments:
         nombre = String()
@@ -21,20 +33,18 @@ class CrearEstudiante(Mutation):
 
     def mutate(root, info, nombre, apellido, carrera):
         nuevo_estudiante = Estudiante(
-            id=len(estudiantes) + 1,
-            nombre=nombre,
-            apellido=apellido,
-            carrera=carrera,
+            id=len(estudiantes) + 1, 
+            nombre=nombre, 
+            apellido=apellido, 
+            carrera=carrera
         )
         estudiantes.append(nuevo_estudiante)
 
         return CrearEstudiante(estudiante=nuevo_estudiante)
 
-
-# ELIMINAR ESTUDIANTE
 class DeleteEstudiante(Mutation):
     class Arguments:
-        id = int()
+        id = Int()
 
     estudiante = Field(Estudiante)
 
@@ -45,49 +55,16 @@ class DeleteEstudiante(Mutation):
                 return DeleteEstudiante(estudiante=estudiante)
         return None
 
-
 class Mutations(ObjectType):
     crear_estudiante = CrearEstudiante.Field()
-    # Se crea para eliminar estudiante
     delete_estudiante = DeleteEstudiante.Field()
-
-
-class Query(ObjectType):
-    estudiantes = List(Estudiante)
-    estudiante_por_id = Field(Estudiante, id=Int())
-    estudiante_por_nombre_apellido = Field(
-        Estudiante, nombre=String(), apellido=String()
-    )
-    estudiante_por_carrera = Field(Estudiante, carrera=String())
-
-    def resolve_estudiantes(root, info):
-        return estudiantes
-
-    def resolve_estudiante_por_id(root, info, id):
-        for estudiante in estudiantes:
-            if estudiante.id == id:
-                return estudiante
-        return None
-
-    def resolve_estudiante_por_nombre_apellido(root, info, nombre, apellido):
-        for estudiante in estudiantes:
-            if estudiante.nombre == nombre and estudiante.apellido == apellido:
-                return estudiante
-            return None
-
-    def resolve_estudiante_por_carrera(root, info, carrera):
-        return [
-            estudiante for estudiante in estudiantes if estudiante.carrera == carrera
-        ]
-
 
 estudiantes = [
     Estudiante(
-        id=1, nombre="Pedrito", apellido="Garcia", carrera="Ingeniería de Sistemas"
+        id=1, nombre="Pedrito", apellido="García", carrera="Ingeniería de Sistemas"
     ),
-    Estudiante(id=2, nombre="Andrea", apellido="Lopez", carrera="Arquitectura"),
+    Estudiante(id=2, nombre="Jose", apellido="Lopez", carrera="Arquitectura"),
 ]
-
 
 schema = Schema(query=Query, mutation=Mutations)
 
@@ -104,6 +81,7 @@ class GraphQLRequestHandler(BaseHTTPRequestHandler):
             content_length = int(self.headers["Content-Length"])
             data = self.rfile.read(content_length)
             data = json.loads(data.decode("utf-8"))
+            print(data)
             result = schema.execute(data["query"])
             self.response_handler(200, result.data)
         else:

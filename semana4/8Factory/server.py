@@ -3,6 +3,7 @@ import json
 
 
 class DeliveryVehicle:
+
     def deliver(self):
         raise NotImplementedError()
 
