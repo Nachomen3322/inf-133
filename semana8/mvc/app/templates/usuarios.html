@@ -1,0 +1,15 @@
+
+<!-- Este archibito hera lo que tengo base.html, se va ver igual, para decir que cambie el block content lo hace -->
+{% extends 'base.html' %}
+
+<!-- esto lo cambia del original -->
+{% block content %}
+<h2>Lista de Usuarios</h2>
+<ul>
+    <!-- las llaves son for ciclos -->
+    {% for user in users %}
+    <!-- me muestra nombre y apellido  y crea listilla-->
+        <li>{{ user.first_name }} {{ user.last_name }} {{ user.email }} {{ user.password }} {{ user.date.toString() }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

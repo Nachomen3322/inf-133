@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MVC</title>
+</head>
+<body>
+    <h1>MVC</h1>
+    <nav>
+        <!-- esto redirecciona, esta es la base donde puedes meterle mas cosas -->
+        <a href="{{ url_for('user.registro') }}">Registrar Usuario</a> |
+        <a href="{{ url_for('user.usuarios') }}">Lista de Usuarios</a>
+    </nav>
+    <div>
+        <!-- es un bloque de contenido, indica que habra algo variante y se define asi -->
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
