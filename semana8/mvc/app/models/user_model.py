@@ -1,5 +1,8 @@
 from database import db
 
+from datetime import datetime
+
+
 # Se importa el objeto
 # el db.model es una clase base para todos los modelos de SQALchemy
 # Define la clase User que hereda dbModel
@@ -7,7 +10,7 @@ from database import db
 
 
 class User(db.Model):
-    __table__name = "users"
+    __tablename__ = "users"
     # Define las columnas de la tabla users
     id = db.Column(db.Integer, primary_key=True)
     # Es una columna de tipo coduno, no es nuleable
@@ -16,17 +19,17 @@ class User(db.Model):
     last_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(50), nullable=False)
-    date = db.Column(db.String(50), nullable=False)
+    fechanac = db.Column(db.String(50), nullable=False)
 
     # Inicializa la clase User
 
-    def __init__(self, first_name, last_name, email, password, date):
+    def __init__(self, first_name, last_name, email, password, fechanac):
         # No necesita hacer la llave que tenga etc
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
         self.password = password
-        self.date = date
+        self.fechanac =  datetime.strptime(fechanac, "%Y-%m-%d").date()
 
     # Guarda us
     def save(self):
