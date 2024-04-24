@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="subtitle is-2">Actualizar Usuario</h2>
+
+<form method="post">
+    <div class="field">
+        <label for="ideliminar">Id para eliminar:</label>
+        <div class="control">
+            <input type="text" id="ideliminar" name="ideliminar" 
+            required class="input" value="{{ user.id }}">
+        </div>
+    </div>
+    
+    <input type="submit" value="Actualizar" class="button is-primary">
+
+{% endblock %}
