@@ -54,6 +54,6 @@ class User(db.Model):
         db.session.commit()
         
     def delete(self):
-        db.session.commit()
+        self.delete()
     
     

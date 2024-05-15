@@ -89,24 +89,11 @@ def actualizar(id):
 
 
 
-@user_bp.route("/users/<int:id>", methods=["DELETE"])
-def actualizar(id):
+@user_bp.route("/usersdelete/<int:id>", methods=["DELETE"])
+def eliminar(id):
     user = User.get_by_id(id)
     if not user:
         return "Usuario no encontrado", 404
-    # Obtenemos los datos del formulario
-    first_name = request.form["first_name"]
-    last_name = request.form["last_name"]
-    email = request.form["email"]
-    password = request.form["password"]
-    fechanac = request.form["fechanac"]
-    # Actualizamos los datos del usuario
-    user.first_name = first_name
-    user.last_name = last_name
-    user.email = email
-    user.password = password
-    user.fechanac = fechanac
-    # Guardamos los cambios
-    user.update()
+    user.eliminate()
     # redirecta al blueprint user, dentro del blueprint user, hay usuarios, haz que redireccione a la ruta usuarios, devuelve a la raiz
     return redirect(url_for("user.usuarios"))
