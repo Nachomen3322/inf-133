@@ -77,7 +77,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/user"
+                                        "$ref": "#/components/schemas/User"
                                     }
                                 }
                             }
@@ -96,7 +96,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/user"
+                                "$ref": "#/components/schemas/User"
                             }
                         }
                     }
@@ -107,7 +107,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/user"
+                                    "$ref": "#/components/schemas/User"
                                 }
                             }
                         }
@@ -141,7 +141,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/user"
+                                    "$ref": "#/components/schemas/User"
                                 }
                             }
                         }
@@ -172,7 +172,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/user"
+                                "$ref": "#/components/schemas/User"
                             }
                         }
                     }
@@ -183,7 +183,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/user"
+                                    "$ref": "#/components/schemas/User"
                                 }
                             }
                         }
@@ -428,7 +428,7 @@
                     "username": {
                         "type": "string"
                     },
-                    "password": {
+                    "password_hash": {
                         "type": "string"
                     },
                     "roles": {
@@ -444,8 +444,9 @@
                 },
                 "required": [
                     "username",
-                    "password",
-                    "roles"
+                    "roles",
+                    "password_hash"
+
                 ]
             },
             "Login": {
