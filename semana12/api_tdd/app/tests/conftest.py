@@ -29,7 +29,7 @@ def test_client():
 #SIMULANDO LOS TOKENS, el pytest = esta funcion se debe ejecutar con los pytest cuando se ejecuta pytest
 @pytest.fixture(scope="module")
 #esta funcion basicamente genera tokens, solo funcionara para admin, si para que funciona a otro envez de admin, user o los dos roles
-def auth_headers():
+def admin_auth_headers():
     #si existe servidor de prueba, crea token
     with app.app_context():
         access_token = create_access_token(
@@ -41,10 +41,10 @@ def auth_headers():
     
     
 @pytest.fixture(scope="module")
-def auth_headers():
+def user_auth_headers():
     with app.app_context():
         access_token = create_access_token(
-            identity={"username": "juanito", "roles": '["user"]'}
+            identity={"username": "user", "roles": '["user"]'}
         )
         headers = {"Authorization": f"Bearer {access_token}"}
-        return headers
+        return headers  

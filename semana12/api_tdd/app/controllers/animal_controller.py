@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 
-#agregas el nombre del proyecto (app), aveces hay que 
+# agregas el nombre del proyecto (app), aveces hay que
 from models.animal_model import Animal
 from utils.decorators import jwt_required, roles_required
 from views.animal_view import render_animal_detail, render_animal_list

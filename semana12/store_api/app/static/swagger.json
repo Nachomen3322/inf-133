@@ -1,13 +1,13 @@
 {
     "openapi": "3.0.1",
     "info": {
-        "title": "Zoológico API",
+        "title": "Tienda Online API",
         "version": "1.0.0"
     },
     "paths": {
-        "/api/animals": {
+        "/api/products": {
             "get": {
-                "summary": "Obtiene la lista de todos los animales",
+                "summary": "Obtiene la lista de todos los productos",
                 "security": [
                     {
                         "JWTAuth": []
@@ -15,13 +15,13 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Lista de animales",
+                        "description": "Lista de productos",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Animal"
+                                        "$ref": "#/components/schemas/Product"
                                     }
                                 }
                             }
@@ -30,7 +30,7 @@
                 }
             },
             "post": {
-                "summary": "Crea un nuevo animal",
+                "summary": "Crea un nuevo producto",
                 "security": [
                     {
                         "JWTAuth": []
@@ -40,18 +40,18 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Animal"
+                                "$ref": "#/components/schemas/Product"
                             }
                         }
                     }
                 },
                 "responses": {
                     "201": {
-                        "description": "Animal creado",
+                        "description": "Producto creado",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Animal"
+                                    "$ref": "#/components/schemas/Product"
                                 }
                             }
                         }
@@ -59,9 +59,9 @@
                 }
             }
         },
-        "/api/animals/{id}": {
+        "/api/products/{id}": {
             "get": {
-                "summary": "Obtiene un animal específico por su ID",
+                "summary": "Obtiene un producto específico por su ID",
                 "security": [
                     {
                         "JWTAuth": []
@@ -79,22 +79,22 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Detalles del animal",
+                        "description": "Detalles del producto",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Animal"
+                                    "$ref": "#/components/schemas/Product"
                                 }
                             }
                         }
                     },
                     "404": {
-                        "description": "Animal no encontrado"
+                        "description": "Producto no encontrado"
                     }
                 }
             },
             "put": {
-                "summary": "Actualiza un animal existente por su ID",
+                "summary": "Actualiza un producto existente por su ID",
                 "security": [
                     {
                         "JWTAuth": []
@@ -114,29 +114,29 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Animal"
+                                "$ref": "#/components/schemas/Product"
                             }
                         }
                     }
                 },
                 "responses": {
                     "200": {
-                        "description": "Animal actualizado",
+                        "description": "Producto actualizado",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Animal"
+                                    "$ref": "#/components/schemas/Product"
                                 }
                             }
                         }
                     },
                     "404": {
-                        "description": "Animal no encontrado"
+                        "description": "Producto no encontrado"
                     }
                 }
             },
             "delete": {
-                "summary": "Elimina un animal existente por su ID",
+                "summary": "Elimina un producto existente por su ID",
                 "security": [
                     {
                         "JWTAuth": []
@@ -154,10 +154,10 @@
                 ],
                 "responses": {
                     "204": {
-                        "description": "Animal eliminado"
+                        "description": "Producto eliminado"
                     },
                     "404": {
-                        "description": "Animal no encontrado"
+                        "description": "Producto no encontrado"
                     }
                 }
             }
@@ -202,13 +202,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "access_token": {
-                                            "type": "string",
-                                            "description": "Token de acceso JWT para el usuario"
-                                        }
-                                    }
+                                    "$ref": "#/components/schemas/Token"
                                 }
                             }
                         }
@@ -229,7 +223,7 @@
             }
         },
         "schemas": {
-            "Animal": {
+            "Product": {
                 "type": "object",
                 "properties": {
                     "id": {
@@ -239,17 +233,22 @@
                     "name": {
                         "type": "string"
                     },
-                    "species": {
+                    "description": {
                         "type": "string"
                     },
-                    "age": {
+                    "price": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "stock": {
                         "type": "integer"
                     }
                 },
                 "required": [
                     "name",
-                    "species",
-                    "age"
+                    "description",
+                    "price",
+                    "stock"
                 ]
             },
             "User": {

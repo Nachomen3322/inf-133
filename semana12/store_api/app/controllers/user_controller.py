@@ -36,7 +36,7 @@ def login():
     password = data.get("password")
 
     user = User.find_by_username(username)
-    if user and check_password_hash(user.password, password):
+    if user and check_password_hash(user.password_hash, password):
         # Si las credenciales son válidas, genera un token JWT
         access_token = create_access_token(
             identity={"username": username, "roles": user.roles}
